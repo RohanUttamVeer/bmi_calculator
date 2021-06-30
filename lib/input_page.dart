@@ -23,6 +23,7 @@ class _InputPageState extends State<InputPage> {
         title: Text('BMI Calculator'),
       ),
       body: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
           Expanded(
             child: Row(
@@ -30,47 +31,48 @@ class _InputPageState extends State<InputPage> {
                 Expanded(
                   child: ReuseableCard(
                     colour: colorContainer,
-                    cardChild: LabelWidget(genderIcon: FontAwesomeIcons.mars,
-                        gender: 'MALE'),
+                    cardChild: LabelWidget(
+                      genderIcon: FontAwesomeIcons.mars,
+                      gender: 'MALE',
+                    ),
                   ),
                 ),
                 Expanded(
                   child: ReuseableCard(
                     colour: colorContainer,
-                    cardChild: LabelWidget(genderIcon: FontAwesomeIcons.venus,
-                        gender: 'FEMALE'),
+                    cardChild: LabelWidget(
+                        genderIcon: FontAwesomeIcons.venus, gender: 'FEMALE'),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Expanded(
+            child: ReuseableCard(
+              colour: colorContainer,
+            ),
+          ),
+          Expanded(
+            child: Row(
+              children: <Widget>[
+                Expanded(
+                  child: ReuseableCard(
+                    colour: colorContainer,
                   ),
                 ),
                 Expanded(
                   child: ReuseableCard(
-                    colour: colorContainer, 
+                    colour: colorContainer,
                   ),
-                ),
-                Expanded(
-                  child: Row(
-                    children: <Widget>[
-                      Expanded(
-                        child: ReuseableCard(
-                          colour: colorContainer,
-                        ),
-                      ),
-                      Expanded(
-                        child: ReuseableCard(
-                          colour: colorContainer,
-                          
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                Container(
-                  color: colorAccent,
-                  margin: EdgeInsets.only(top: 10.0),
-                  width: double.infinity,
-                  height: bottomContainerHeight,
                 ),
               ],
             ),
+          ),
+          Container(
+            color: colorAccent,
+            margin: EdgeInsets.only(top: 10.0),
+            width: double.infinity,
+            height: bottomContainerHeight,
           ),
         ],
       ),
