@@ -1,9 +1,10 @@
-import 'package:bmi_calculator/result_page.dart';
+import 'package:bmi_calculator/bmi_brain.dart';
+import 'package:bmi_calculator/components/icon_content.dart';
+import 'package:bmi_calculator/components/reuseable_card.dart';
+import 'package:bmi_calculator/screens/result_page.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'const.dart';
-import 'icon_content.dart';
-import 'reuseable_card.dart';
+import '../const.dart';
 
 enum Gender {
   male,
@@ -206,32 +207,55 @@ class _InputPageState extends State<InputPage> {
               ],
             ),
           ),
-          GestureDetector(
-            onTap: () {
+          BottomButton(
+            buttonTap: () {
               setState(() {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => ResultPage()));
+                CalBrain calc = CalBrain(height: height, weight: weight);
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => ResultPage(
+                      bmiResult: calc.calBMI(),
+                      interpretation: calc.getInterpretation(),
+                      resultText: calc.getResult(),
+                    ),
+                  ),
+                );
               });
             },
-            child: Container(
-              child: Center(
-                child: Text(
-                  'CALCULATE',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 25,
-                      fontWeight: FontWeight.bold),
-                ),
-              ),
-              color: kColorAccent,
-              margin: EdgeInsets.only(top: 10.0),
-              padding: EdgeInsets.only(bottom: 20.0),
-              width: double.infinity,
-              height: kBottomContainerHeight,
-            ),
+            buttonTitle: 'CALCULATE',
           ),
         ],
+      ),
+    );
+  }
+}
+
+class BottomButton extends StatelessWidget {
+  BottomButton({required this.buttonTap, required this.buttonTitle});
+  final Function buttonTap;
+  final String buttonTitle;
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: () {
+        buttonTap.call();
+      },
+      child: Container(
+        child: Center(
+          child: Text(
+            buttonTitle,
+            textAlign: TextAlign.center,
+            style: TextStyle(
+                color: Colors.white, fontSize: 25, fontWeight: FontWeight.bold),
+          ),
+        ),
+        color: kColorAccent,
+        margin: EdgeInsets.only(top: 10.0),
+        padding: EdgeInsets.only(bottom: 20.0),
+        width: double.infinity,
+        height: kBottomContainerHeight,
       ),
     );
   }

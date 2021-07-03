@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'const.dart';
+import '../const.dart';
 
 class LabelWidget extends StatelessWidget {
   LabelWidget({this.gender, this.genderIcon});
