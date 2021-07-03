@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'const.dart';
 
 class LabelWidget extends StatelessWidget {
-  LabelWidget({required this.gender, required this.genderIcon});
-  final String gender;
-  final IconData genderIcon;
+  LabelWidget({this.gender, this.genderIcon});
+  final String? gender;
+  final IconData? genderIcon;
 
   @override
   Widget build(BuildContext context) {
@@ -15,9 +16,12 @@ class LabelWidget extends StatelessWidget {
           size: 90,
           color: Color(0xff8d8e98),
         ),
-        Text(
-          gender,
-          style: TextStyle(color: Color(0xff8d8e98)),
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Text(
+            gender!,
+            style: kStyledText,
+          ),
         ),
       ],
     );
